@@ -1,18 +1,21 @@
 package com.nisum.user.web_service.controller;
 
+import com.nisum.user.domain.models.User;
+import com.nisum.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = "*")
 public class UserController extends ResponseHandle {
 
-    //@Autowired
-    //UserService surveyService;
+    @Autowired
+    UserService userService;
 
     @GetMapping()
     public String getUserById() {
@@ -21,12 +24,12 @@ public class UserController extends ResponseHandle {
 
     //@GetMapping("/{id}")
     //public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
-    //    return new ResponseEntity<>(surveyService.getUserById(id), HttpStatus.OK);
+    //    return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     //}
 
-    //@PostMapping()
-    //public ResponseEntity<?> generateSurveyHistoricAnswer(@Valid @RequestBody SurveyHistoricAnswer surveyHistoricAnswer) {
-    //    return new ResponseEntity<>(surveyService.generateSurveyHistoricAnswer(surveyHistoricAnswer), HttpStatus.OK);
-    //}
+    @PostMapping()
+    public ResponseEntity<?> saveUser(@Valid @RequestBody User user) {
+        return new ResponseEntity<String>(userService.saveUser(user), HttpStatus.OK);
+    }
 }
 

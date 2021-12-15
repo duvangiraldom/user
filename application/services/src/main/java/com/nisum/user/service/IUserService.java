@@ -1,8 +1,8 @@
-package com.nisum.user.domain.gateway;
+package com.nisum.user.service;
 
 import com.nisum.user.domain.models.User;
 
-public interface IUserRepository {
+public interface IUserService {
 
     User getUserById();
 
