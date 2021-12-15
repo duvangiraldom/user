@@ -1,0 +1,18 @@
+repositories {
+    mavenCentral()
+}
+
+bootJar{
+    enabled = false
+}
+
+jar{
+    enabled = true
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation project(':user-domain')
+    implementation project(':application-services')
+}
+
