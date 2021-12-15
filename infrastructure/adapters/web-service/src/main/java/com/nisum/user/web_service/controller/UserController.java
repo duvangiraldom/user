@@ -29,7 +29,7 @@ public class UserController extends ResponseHandle {
 
     @PostMapping()
     public ResponseEntity<?> saveUser(@Valid @RequestBody User user) {
-        return new ResponseEntity<String>(userService.saveUser(user), HttpStatus.OK);
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
     }
 }
 

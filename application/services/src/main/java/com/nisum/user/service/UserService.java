@@ -18,7 +18,7 @@ public class UserService implements IUserService {
 
     @Override
     public String saveUser(User user) {
-        return null;
+        return userRepository.saveUser(user);
     }
 
 }
