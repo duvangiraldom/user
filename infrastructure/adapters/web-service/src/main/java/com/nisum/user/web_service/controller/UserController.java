@@ -2,6 +2,7 @@ package com.nisum.user.web_service.controller;
 
 import com.nisum.user.domain.models.User;
 import com.nisum.user.service.UserService;
+import com.nisum.user.web_service.dto.UserFilterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +19,12 @@ public class UserController extends ResponseHandle {
     UserService userService;
 
     @GetMapping()
-    public String getUserById() {
-        return "TEST";
+    public ResponseEntity<User> getUserById(@Valid @RequestBody UserFilterDto filter) {
+        return new ResponseEntity<>(userService.getUserByEmail(filter.getEmail()), HttpStatus.OK);
     }
 
-    //@GetMapping("/{id}")
-    //public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
-    //    return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
-    //}
-
     @PostMapping()
-    public ResponseEntity<?> saveUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
     }
 }

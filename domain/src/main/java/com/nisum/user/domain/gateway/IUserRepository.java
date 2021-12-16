@@ -4,7 +4,9 @@ import com.nisum.user.domain.models.User;
 
 public interface IUserRepository {
 
-    User getUserById();
+    User saveUser(User user);
 
-    String saveUser(User user);
+    Boolean existsUserByEmail(String email);
+
+    User getUserByEmail(String email);
 }

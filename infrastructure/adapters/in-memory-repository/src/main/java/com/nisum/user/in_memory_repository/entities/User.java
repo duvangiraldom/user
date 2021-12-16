@@ -43,7 +43,7 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime modified;
 
-    @Column(name = "last_login", nullable = false)
+    @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
     @Column(nullable = false)

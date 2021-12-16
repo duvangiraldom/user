@@ -4,7 +4,7 @@ import com.nisum.user.domain.models.User;
 
 public interface IUserService {
 
-    User getUserById();
+    User saveUser(User user);
 
-    String saveUser(User user);
+    User getUserByEmail(String email);
 }
