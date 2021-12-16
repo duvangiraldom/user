@@ -40,9 +40,26 @@ Json body
 }
 ```
 
-Output Json
+Output Json success
 ```json
-
+{
+  "name": "Juan Rodriguez",
+  "email": "juan@rodriguez.org",
+  "password": "hunter2",
+  "phones": [
+    {
+      "number": "1234567",
+      "citycode": "1",
+      "contrycode": "57"
+    }
+  ],
+  "id": "897e2260-d0ae-4cb1-af3a-fa9acef847b4",
+  "created": "2021-12-15T23:32:25.6144777",
+  "modified": "2021-12-15T23:32:25.6144777",
+  "lastLogin": "2021-12-15T23:32:25.6144777",
+  "token": "0489fb93-ca5b-4ebd-86d0-8bd5345782d6",
+  "isActive": true
+}
 ```
 
 #### Get a User by Email filter **in a local environment**:
@@ -55,8 +72,29 @@ Json body
   "email":"juan@rodriguez.org"
 }
 ```
+Output Json success
+```json
+{
+  "name": "Juan Rodriguez",
+  "email": "juan@rodriguez.org",
+  "password": "hunter2",
+  "phones": [
+    {
+      "number": "1234567",
+      "citycode": "1",
+      "contrycode": "57"
+    }
+  ],
+  "id": "897e2260-d0ae-4cb1-af3a-fa9acef847b4",
+  "created": "2021-12-15T23:32:25.614478",
+  "modified": "2021-12-15T23:32:25.614478",
+  "lastLogin": "2021-12-15T23:32:25.614478",
+  "token": "0489fb93-ca5b-4ebd-86d0-8bd5345782d6",
+  "isActive": true
+}
+```
 
-####Create or update password regex; is necessary the key field equals PASSWORD-REGEX to configure parameter of password regex **in a local environment**:
+#### Create or update password regex; is necessary the key field equals PASSWORD-REGEX to configure parameter of password regex **in a local environment**:
 
 **PUT http://localhost:8080/admin/parameters**
 
@@ -65,5 +103,12 @@ Json body
 {
     "key": "PASSWORD-REGEX",   
     "value": ".*"
+}
+```
+
+Output Json success
+```json
+{
+  "message": "Parameter PASSWORD-REGEX has been saved or updated successfully"
 }
 ```
