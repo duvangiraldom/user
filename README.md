@@ -14,7 +14,7 @@ The following diagram shows the entity relationship model of the different table
 
 
 Download all dependencies from gradle when import the project in the IDE or download from command line and run the main class of the application, that is in the user-api module.
-![Main_Class](documentation/main-class.jpg)
+![Main_Class](documentation/main-class.JPG)
 
 When running the application, the ORM will create the tables in the database.
 
