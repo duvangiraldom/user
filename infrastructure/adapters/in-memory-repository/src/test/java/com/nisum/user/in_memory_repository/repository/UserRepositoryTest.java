@@ -1,7 +1,5 @@
 package com.nisum.user.in_memory_repository.repository;
 
-import com.nisum.user.domain.gateway.IUserRepository;
-import com.nisum.user.domain.models.Parameter;
 import com.nisum.user.domain.models.Phone;
 import com.nisum.user.domain.models.User;
 import com.nisum.user.in_memory_repository.mapper.ParserEntityToModel;
@@ -12,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,14 +17,12 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserRepositoryTest {
 
     private static final String TEST = "TEST";
-    private static final Integer TEST_NUM = 1;
     private static final UUID TEST_UUID = UUID.randomUUID();
     private static final LocalDateTime TEST_DATE = LocalDateTime.now();
 

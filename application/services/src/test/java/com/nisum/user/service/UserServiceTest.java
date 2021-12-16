@@ -1,5 +1,6 @@
 package com.nisum.user.service;
 
+import com.nisum.user.domain.exceptions.BusinessException;
 import com.nisum.user.domain.gateway.IParameterRepository;
 import com.nisum.user.domain.gateway.IUserRepository;
 import com.nisum.user.domain.models.Parameter;
@@ -25,7 +26,6 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
 
     private static final String TEST = "TEST";
-    private static final Integer TEST_NUM = 1;
     private static final UUID TEST_UUID = UUID.randomUUID();
     private static final LocalDateTime TEST_DATE = LocalDateTime.now();
 
@@ -74,6 +74,28 @@ public class UserServiceTest {
         verify(userRepository, times(1)).existsUserByEmail(anyString());
         verify(userRepository, times(1)).saveUser(any(User.class));
         assertThat(current).isNotNull();
+    }
+
+    @Test(expected = BusinessException.class)
+    public void shouldNotSaveUserWhenEmailAlreadyExist() {
+        when(parameterRepository.findParameterByKey(anyString())).thenReturn(passwordRegexParameter);
+        when(userRepository.existsUserByEmail(anyString())).thenReturn(true);
+        service.saveUser(user);
+        verify(parameterRepository, times(1)).findParameterByKey(anyString());
+        verify(userRepository, times(1)).existsUserByEmail(anyString());
+    }
+
+    @Test(expected = BusinessException.class)
+    public void shouldNotSaveUserWhenIsNotValidPasswordRegex() {
+        passwordRegexParameter = Parameter.builder()
+                .key(TEST)
+                .value("^[0-9]*)$")
+                .build();
+        when(parameterRepository.findParameterByKey(anyString())).thenReturn(passwordRegexParameter);
+        when(userRepository.existsUserByEmail(anyString())).thenReturn(true);
+        service.saveUser(user);
+        verify(parameterRepository, times(1)).findParameterByKey(anyString());
+        verify(userRepository, times(1)).existsUserByEmail(anyString());
     }
 
 }
