@@ -12,8 +12,6 @@ import java.util.UUID;
 @Repository
 public interface IParameterDataRepository extends JpaRepository<Parameter, UUID> {
 
-    Boolean existsParameterByKeyIgnoreCase(String key);
-
     Parameter findFirstByKeyIgnoreCase(String key);
 
     @Transactional

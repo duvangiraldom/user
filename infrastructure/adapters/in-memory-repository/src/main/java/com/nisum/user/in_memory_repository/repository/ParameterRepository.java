@@ -15,6 +15,15 @@ public class ParameterRepository implements IParameterRepository {
     private IParameterDataRepository repository;
 
     @Override
+    public com.nisum.user.domain.models.Parameter findParameterByKey(String key) {
+        Parameter entity = repository.findFirstByKeyIgnoreCase(key);
+        return com.nisum.user.domain.models.Parameter.builder()
+                .key(entity.getKey())
+                .value(entity.getValue())
+                .build();
+    }
+
+    @Override
     public Map<String, String> updateParameter(com.nisum.user.domain.models.Parameter parameter) {
         saveOrUpdateParameter(parameter);
         Map<String, String> message = new HashMap<>();

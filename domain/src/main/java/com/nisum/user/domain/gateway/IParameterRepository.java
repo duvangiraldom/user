@@ -6,5 +6,7 @@ import java.util.Map;
 
 public interface IParameterRepository {
 
+    Parameter findParameterByKey(String key);
+
     Map<String, String> updateParameter(Parameter parameter);
 }
