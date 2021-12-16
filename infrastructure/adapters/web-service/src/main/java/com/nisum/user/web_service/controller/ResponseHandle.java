@@ -4,6 +4,7 @@ import com.nisum.user.domain.exceptions.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,15 @@ public class ResponseHandle {
             HttpMessageNotReadableException ex) {
         Map<String, String> errors = new HashMap<>();
         errors.put("message", "The request could not be processed because the body is empty or contains errors. Please verify and try again");
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public Map<String, String> handleEmptyRequestException(
+            HttpRequestMethodNotSupportedException ex) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
         return errors;
     }
 
